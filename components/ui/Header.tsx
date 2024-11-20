@@ -6,6 +6,7 @@ function Header() {
     <header className="flex w-full p-4 bg-gray-200">
       <nav className="flex w-full">
         <ul className="flex w-full justify-evenly gap-4">
+          <Link href="/" className="text-blue-500">Home</Link>
           <Link href="/pagamentos" className="text-blue-500">Pagamentos</Link>
           <Link href="/listaPagamentos" className="text-blue-500">Lista de Pagamentos</Link>
         </ul>
