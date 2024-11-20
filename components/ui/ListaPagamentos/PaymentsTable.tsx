@@ -42,9 +42,13 @@ function PlanetsTableComponent() {
     }, []);
 
     const { data : invoices, isLoading, isError } = useGetInvoices();
+
+    const sortedInvoices = useMemo(() => {
+      return invoices ? [...invoices].sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()) : [];
+  }, [invoices]);
     
   const table = useReactTable({
-    data: invoices || [],
+    data: sortedInvoices || [],
     columns,
     getCoreRowModel: getCoreRowModel(),
   })
