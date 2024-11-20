@@ -1,4 +1,4 @@
-import PaymentsTable from "@/components/ui/PaymentsTable";
+import PaymentsTable from "@/components/ui/ListaPagamentos/PaymentsTable";
 import React from "react";
 
 function Page() {
