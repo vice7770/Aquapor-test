@@ -7,6 +7,7 @@ import queryClient from "@/lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { usePostInvoice } from "@/app/hooks/invoices";
+import { toast } from "sonner";
 
 function PaymentComponent() {
   const [formData, setFormData] = useState({
@@ -39,6 +40,19 @@ function PaymentComponent() {
       }, 3000);
     }
   }, [isSuccess, router]);
+
+
+  useEffect(() => {
+    if (isError) {
+      toast("Erro na submissao", {
+        description: "Description",
+        action: {
+          label: "Undo",
+          onClick: () => console.log("Undo"),
+        },
+      })
+    }
+  }, [isError]);
 
   return (
     <div className="flex flex-col gap-y-5">
