@@ -17,8 +17,11 @@ import {
 } from "@/components/ui/table"
 import { Invoice } from "@/app/types/api"
 import { useMemo } from "react"
+import { useGetInvoices } from "@/app/hooks/invoices"
+import queryClient from "@/lib/queryClient"
+import { QueryClientProvider } from "@tanstack/react-query"
 
-function PaymentsTable() {
+function PlanetsTableComponent() {
 
     const columnHelper = createColumnHelper<Invoice>();
     const columns = useMemo(() => {
@@ -38,40 +41,15 @@ function PaymentsTable() {
         ];
     }, []);
 
-    const data = [
-        {
-          id: "1",
-          value: "9.99EUR",
-          timestamp: "2021-09-01T00:00:00Z",
-        },
-        {
-          id: "2",
-          value: "19.99EUR",
-          timestamp: "2021-09-02T00:00:00Z",
-        },
-        {
-          id: "3",
-          value: "29.99EUR",
-          timestamp: "2021-09-03T00:00:00Z",
-        },
-        {
-          id: "4",
-          value: "39.99EUR",
-          timestamp: "2021-09-04T00:00:00Z",
-        },
-        {
-          id: "5",
-          value: "49.99EUR",
-          timestamp: "2021-09-05T00:00:00Z",
-        },
-    ];
+    const { data : invoices, isLoading, isError } = useGetInvoices();
     
-
   const table = useReactTable({
-    data,
+    data: invoices || [],
     columns,
     getCoreRowModel: getCoreRowModel(),
   })
+  if (isLoading) return <div className="flex w-full h-[500px] justify-center items-center">Loading...</div>;
+  if (isError) return <div className="flex w-full h-full justify-center items-center">Error loading data</div>;
 
   return (
     <div className="w-full">
@@ -132,5 +110,12 @@ function PaymentsTable() {
     </div>
   )
 }
+
+const PaymentsTable = () => (
+    <QueryClientProvider client={queryClient}>
+      <PlanetsTableComponent />
+    </QueryClientProvider>
+);
+  
 
 export default PaymentsTable;
