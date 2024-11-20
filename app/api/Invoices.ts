@@ -3,19 +3,29 @@ import { Invoice, InvoicePost } from "../types/api";
 const MockInvoicesData: Invoice[] = [
     {
         id: "1",
-        value: "100",
-        timestamp: "2021-08-01T12:00:00Z",
-    },
-    {
+        value: "9.99EUR",
+        timestamp: "2021-09-01T00:00:00Z",
+      },
+      {
         id: "2",
-        value: "200",
-        timestamp: "2021-08-02T12:00:00Z",
-    },
-    {
+        value: "19.99EUR",
+        timestamp: "2021-09-02T00:00:00Z",
+      },
+      {
         id: "3",
-        value: "300",
-        timestamp: "2021-08-03T12:00:00Z",
-    },
+        value: "29.99EUR",
+        timestamp: "2021-09-03T00:00:00Z",
+      },
+      {
+        id: "4",
+        value: "39.99EUR",
+        timestamp: "2021-09-04T00:00:00Z",
+      },
+      {
+        id: "5",
+        value: "49.99EUR",
+        timestamp: "2021-09-05T00:00:00Z",
+      },
 ];
 
 export const getInvoices = async (): Promise<Invoice[]> => {
