@@ -1,20 +1,14 @@
 "use client"
+import { Button } from "@/components/ui/button";
+import CardPayment from "@/components/ui/CardPayment";
 import { useState } from "react";
 
 function Page() {
-  const [formData, setFormData] = useState({
+  const [formData] = useState({
     id: "",
     value: "9.99EUR",
     timestamp: new Date().toISOString(),
   });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,23 +17,13 @@ function Page() {
   };
 
   return (
-    <div>
-      <h1>Pagamentos</h1>
-      <p>Payment page</p>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="id">ID:</label>
-          <input
-            type="text"
-            id="id"
-            name="id"
-            value={formData.id}
-            onChange={handleChange}
-          />
+    <div className="flex w-full h-full justify-center items-center">
+        <div className="flex flex-col gap-y-5">
+            <form className="flex w-full justify-center" onSubmit={handleSubmit}>
+                <Button type="submit">Button</Button>
+            </form>
+            <CardPayment value={formData.value} timestamp={formData.timestamp} />
         </div>
-        <button type="submit">Submit</button>
-      </form>
-      
     </div>
   );
 }
